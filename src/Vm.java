@@ -112,10 +112,10 @@ public class Vm {
 
 		try {
 			// Cria arquivo
-			File file = new File("teste.txt");
+			File file = new File("arquivo.txt");
 
 			// Le o arquivo
-			FileReader ler = new FileReader("teste.txt");
+			FileReader ler = new FileReader("arquivo.txt");
 			BufferedReader reader = new BufferedReader(ler);
 			String linha;
 			while ((linha = reader.readLine()) != null) {

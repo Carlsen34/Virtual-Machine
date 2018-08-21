@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Stack;
@@ -28,13 +29,13 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 	JLabel rgi = new JLabel();
 	JLabel rgs = new JLabel();
 	JLabel pilhaM = new JLabel();
-	JLabel prnInstruction = new JLabel();
 	JLabel debugLabel = new JLabel();
 
 	JButton debug = new JButton();
 	JButton continuar = new JButton();
 
 	public JanelaPrincipal() {
+		
 
 		tela.add(panel_esq);
 		tela.add(panel_dir);
@@ -46,6 +47,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		panel_esq.setPreferredSize(new Dimension(500, 250));
 		panel_esq.setBorder(BorderFactory.createLineBorder(Color.black));
 		panel_esq.setBackground(Color.white);
+		
 
 
 		
@@ -110,8 +112,8 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 	
 	
 	public void printPrn(String prn) {
-	
-		prnInstruction.setText(prn);
+		JLabel prnInstruction = new JLabel();
+		prnInstruction.setText("<html>"+ prn + "<br/>"+"</html>");
 		panel_bot_esq.add(prnInstruction);
 	}
 
@@ -123,22 +125,15 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 			pilhaAux = pilhaAux + pilha.get(i).toString();
 			
 		}
-		pilhaM.setText(pilhaAux);
-		panel_dir.add(pilhaM);
 		
+
+		JLabel jlabel = new JLabel(pilhaAux);
+	    jlabel.setText("<html>"+ pilhaAux + "<br/>"+"</html>");
+	
+					
+		panel_dir.add(jlabel);
 		
-//		for(int i = 0; i<pilha.size();i++) {
-//			JPanel panel = new JPanel();
-//			JLabel label = new JLabel();
-//		
-//			panel.setPreferredSize(new Dimension(480,20));
-//			panel.setBackground(Color.white);
-//			panel_dir.add(panel);
-//			label.setText(pilha.get(i).toString());
-//			panel.add(label);
-//
-//			
-//		}
+
 
 	}
 
@@ -149,13 +144,11 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		String instrucao;
 		String a;
 		String b;
+		JLabel label = new JLabel();
+
 
 		for(int i = 0; i<pilha.size();i++) {
 		
-			JPanel panel = new JPanel();
-			JLabel pilhaP = new JLabel();
-			JLabel paramA = new JLabel();
-			JLabel paramB = new JLabel();
 			
 		Stack AuxInstrucao = (Stack) pilha.get(i);
 
@@ -177,24 +170,12 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 			b = (String) AuxInstrucao.get(2);
 		}
 
-		
-		panel.setPreferredSize(new Dimension(480,20));
-		panel.setBackground(Color.white);
-		panel_esq.add(panel);
-		
-		pilhaP.setText(i+ " " + instrucao);
-		paramA.setText(a);
-		paramB.setText(b);
-
-		panel.add(pilhaP);
-		panel.add(paramA);
-		panel.add(paramB);
-		
+		pilhaAux = pilhaAux +instrucao +" " + a + " " + b + " ";
 		
 		}
-	
-
-
+		
+		label.setText("<html>"+ pilhaAux + "<br/>"+"</html>");
+		panel_esq.add(label);
 	}
 
 	public void exibirRegistradorI(int rgI) {

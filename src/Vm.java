@@ -28,13 +28,20 @@ public class Vm {
 	public Vm() {
 		criarPilhaP();
 		tela.exibirRegistradorI(registradorI.regI);
+		tela.exibirRegistradorS(registradorS.regS);
 		tela.exibirPilhaP(pilhaP);
 
 	}
 
 	public static void debug() {
+		if(bp == false) {
 		bp = true;
 		tela.debugLabel.setText("DEBUG MODE");
+		}else {
+			bp = false;
+			tela.debugLabel.setText("NORMAL MODE");
+		}
+		
 	}
 
 	public static void executar() {
@@ -96,6 +103,8 @@ public class Vm {
 		System.out.println(AuxInstrucao);
 		executarInstrucao(instrucao, a, b);
 		tela.exibirRegistradorI(registradorI.regI);
+		tela.exibirRegistradorS(registradorS.regS);
+
 
 	}
 

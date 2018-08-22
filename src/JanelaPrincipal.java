@@ -220,7 +220,9 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		}
 		
 		if(e.getSource() == bpoint ) {
+
 			Stack bp = Vm.addBP();
+	
 			exibirBP(bp);
 		}
 

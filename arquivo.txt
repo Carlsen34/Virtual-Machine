@@ -2,5 +2,6 @@ start
 ldc 3
 ldc 5
 prn 
+jmp 6
 prn
 hlt

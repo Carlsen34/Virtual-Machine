@@ -24,6 +24,8 @@ public class Vm {
 	public static Stack AuxInstrucao = new Stack();
 	
 	public static Stack bpoints = new Stack();
+	public static Stack auxbp = new Stack();
+
 
 	public static JanelaPrincipal tela = new JanelaPrincipal();
 
@@ -75,11 +77,12 @@ public class Vm {
 
 	public static int executarDebug() {
 		int i = 0;
-//		if(bpoints.isEmpty()==false) {
-//			i = (int) bpoints.get(0);
-//		}
+		if(bpoints.isEmpty()==false) {
+			String aux = bpoints.pop().toString();
+			i = Integer.parseInt(aux);
+		}
 		
-		
+		System.out.println("TESTE I" + i);
 		
 		if(i != 0 ) {
 			while(registradorI.regI != i-1) {

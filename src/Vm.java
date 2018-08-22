@@ -443,11 +443,10 @@ public class Vm {
 
 			for (k = 0; k < n; k++) {
 				registradorS.incrementarRegS();
-				if (pilhaM.size() == registradorS.regS) {
-					pilhaM.push(m + k);// M[s]:= “próximo valor de entrada”.
-				} else {
-					pilhaM.set(registradorS.regS, m + k);
-				}
+		
+					pilhaM.set(registradorS.regS,pilhaM.get( m + k));
+					
+					
 
 			}
 
@@ -463,7 +462,7 @@ public class Vm {
 			int k;
 
 			for (k = n; k > 0; k--) {
-				pilhaM.set(registradorS.regS, m + k);
+				pilhaM.set(m+k, pilhaM.get(registradorS.regS));
 				registradorS.decrementarRegS();
 			}
 			registradorI.incrementarRegI();

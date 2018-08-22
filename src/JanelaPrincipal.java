@@ -12,6 +12,10 @@ import javax.swing.*;
 
 public class JanelaPrincipal extends JFrame implements ActionListener {
 
+	
+	
+	
+	
 	JFrame tela = new JFrame("Maquina Virtual");
 	JPanel panel_esq = new JPanel();
 	JPanel panel_dir = new JPanel();
@@ -122,17 +126,12 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		String pilhaAux = "";
 		for (int i = 0; i < pilha.size(); i++) {
 			
-			pilhaAux = pilhaAux + pilha.get(i).toString();
+			pilhaAux = pilhaAux + "M[" + i + "]" + pilha.get(i).toString() + "<br/>";
 			
 		}
 		
-
-		JLabel jlabel = new JLabel(pilhaAux +"<br/>");
-	    jlabel.setText("<html>"+ pilhaAux + "<br/>"+"</html>");
-	
-					
-		panel_dir.add(jlabel);
-		
+		pilhaM.setText("<html>"+ pilhaAux + "<br/>"+"</html>");
+		panel_dir.add(pilhaM);
 
 
 	}
@@ -185,7 +184,6 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 	}
 
 	public void exibirRegistradorS(int rgS) {
-
 		rgs.setText("Registrador S = " + Integer.toString(rgS));
 		panel_bot_dir.add(rgs);
 

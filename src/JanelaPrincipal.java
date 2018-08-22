@@ -127,7 +127,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		}
 		
 
-		JLabel jlabel = new JLabel(pilhaAux);
+		JLabel jlabel = new JLabel(pilhaAux +"<br/>");
 	    jlabel.setText("<html>"+ pilhaAux + "<br/>"+"</html>");
 	
 					
@@ -170,7 +170,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 			b = (String) AuxInstrucao.get(2);
 		}
 
-		pilhaAux = pilhaAux +instrucao +" " + a + " " + b + " ";
+		pilhaAux = pilhaAux +"P[" + i + "] " + instrucao + " " + a + " " + b + "<br/>";
 		
 		}
 		

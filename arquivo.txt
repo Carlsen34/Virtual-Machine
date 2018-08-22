@@ -1,6 +1,6 @@
 start
-rd
-rd
-add
+ldc 3
+ldc 5
 prn 
+prn
 hlt

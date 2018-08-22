@@ -127,7 +127,6 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		for (int i = 0; i < pilha.size(); i++) {
 			
 			pilhaAux = pilhaAux + "M[" + i + "]" + pilha.get(i).toString() + "<br/>";
-			
 		}
 		
 		pilhaM.setText("<html>"+ pilhaAux + "<br/>"+"</html>");

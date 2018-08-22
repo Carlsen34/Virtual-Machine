@@ -34,9 +34,13 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 	JLabel rgs = new JLabel();
 	JLabel pilhaM = new JLabel();
 	JLabel debugLabel = new JLabel();
+	JLabel bpLabel = new JLabel();
+
 
 	JButton debug = new JButton();
 	JButton continuar = new JButton();
+	JButton bpoint = new JButton();
+
 
 	public JanelaPrincipal() {
 		
@@ -88,7 +92,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		titulo3.add(label3);
 		panel_bot_dir.add(titulo3);
 		
-		botoes.setPreferredSize(new Dimension(300, 100));
+		botoes.setPreferredSize(new Dimension(400, 100));
 
 
 		tela.setSize(1300, 700);
@@ -100,6 +104,10 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		debug.setBackground(Color.RED);
 		botoes.add(debug);
 		
+		bpoint.setText("BreakPoint");
+		bpoint.setBackground(Color.WHITE);
+		botoes.add(bpoint);
+		
 		continuar.setText("Continuar");
 		continuar.setBackground(Color.GREEN);
 		botoes.add(continuar);
@@ -109,6 +117,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		
 		continuar.addActionListener(this);
 		debug.addActionListener(this);
+		bpoint.addActionListener(this);
 
 
 	}
@@ -187,6 +196,18 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		panel_bot_dir.add(rgs);
 
 	}
+	
+	public void exibirBP(Stack bp) {
+
+		String aux = "";
+		
+		for(int i = 0;i < bp.size();i++) {
+			aux = aux + bp.get(i) + " ";
+		}
+		
+		bpLabel.setText("BreakPoint's : " + aux);
+		panel_bot_dir.add(bpLabel);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -196,6 +217,11 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		
 		if(e.getSource() == debug) {
 			Vm.debug();
+		}
+		
+		if(e.getSource() == bpoint ) {
+			Stack bp = Vm.addBP();
+			exibirBP(bp);
 		}
 
 	}

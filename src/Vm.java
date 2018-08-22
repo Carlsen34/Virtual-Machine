@@ -22,6 +22,8 @@ public class Vm {
 	public static Stack pilhaM = new Stack();
 
 	public static Stack AuxInstrucao = new Stack();
+	
+	public static Stack bpoints = new Stack();
 
 	public static JanelaPrincipal tela = new JanelaPrincipal();
 
@@ -62,8 +64,30 @@ public class Vm {
 
 		}
 	}
+	
+	
+	
+	public static Stack addBP() {
+		String bp = JOptionPane.showInputDialog("Adicione um BreakPoint: ");
+		bpoints.push(bp);
+		return bpoints;
+	}
 
-	public static void executarDebug() {
+	public static int executarDebug() {
+		int i = 0;
+//		if(bpoints.isEmpty()==false) {
+//			i = (int) bpoints.get(0);
+//		}
+		
+		
+		
+		if(i != 0 ) {
+			while(registradorI.regI != i-1) {
+				if(pilhaP.get(registradorI.regI).equals("hlt")) return 0;
+				else executarPilhaP();
+			}
+		}
+		
 		if (!pilhaP.get(registradorI.regI).equals("hlt")) {
 			executarPilhaP();
 			tela.exibirPilhaM(pilhaM);
@@ -72,6 +96,7 @@ public class Vm {
 			System.out.println("Registrador S =  " + registradorS.regS);
 			System.out.println("Registrador I =  " + registradorI.regI);
 		}
+		return 0;
 	}
 
 	public static void executarPilhaP() {

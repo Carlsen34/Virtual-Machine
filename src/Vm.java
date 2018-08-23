@@ -244,8 +244,8 @@ public class Vm {
 
 		// Somar
 		if (instrucao.equals("add") && parametroA == "" && parametroB == "") {
-			int a = (int) pilhaM.get(registradorS.regS - 1); // M[s-1] = M[s-1] + M[s]
-			int b = (int) pilhaM.get(registradorS.regS);
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
+			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			pilhaM.set(registradorS.regS - 1, a + b);
 
 			registradorI.incrementarRegI(); // I = i + 1
@@ -255,8 +255,8 @@ public class Vm {
 
 		// Subtrair
 		if (instrucao.equals("sub") && parametroA == "" && parametroB == "") {
-			int a = (int) pilhaM.get(registradorS.regS - 1);// M[s-1] = M[s-1] - M[s]
-			int b = (int) pilhaM.get(registradorS.regS);
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
+			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			pilhaM.set(registradorS.regS - 1, a - b);
 			registradorI.incrementarRegI();// I = i + 1
 			registradorS.decrementarRegS();// S = s - 1
@@ -264,8 +264,8 @@ public class Vm {
 
 		// Multiplicar
 		if (instrucao.equals("mult") && parametroA == "" && parametroB == "") {
-			int a = (int) pilhaM.get(registradorS.regS - 1);// M[s-1] = M[s-1] * M[s]
-			int b = (int) pilhaM.get(registradorS.regS);
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
+			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			pilhaM.set(registradorS.regS - 1, a * b);
 
 			registradorI.incrementarRegI();// I = i + 1
@@ -286,9 +286,8 @@ public class Vm {
 		// Inverter Sinal
 
 		if (instrucao.equals("inv") && parametroA == "" && parametroB == "") {
-			int a = (int) pilhaM.get(registradorS.regS);// M[s] = - M[s]
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			pilhaM.set(registradorS.regS, a * -1);
-			System.out.println(pilhaM);
 
 			registradorI.incrementarRegI();// I = i + 1
 
@@ -298,8 +297,8 @@ public class Vm {
 		if (instrucao.equals("and") && parametroA == "" && parametroB == "") {
 
 			// se M [s-1] = 1 e M[s] = 1 então M[s-1]:=1 senão M[s-1]:=0; s:=s - 1
-			int a = (int) pilhaM.get(registradorS.regS - 1);
-			int b = (int) pilhaM.get(registradorS.regS);
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
+			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 
 			if (a == 1 && b == 1) {
 				pilhaM.set(1, registradorS.regS - 1);
@@ -316,8 +315,8 @@ public class Vm {
 
 		if (instrucao.equals("or") && parametroA == "" && parametroB == "") {
 			// se M[s-1] = 1 ou M[s] = 1 então M[s-1]:=1 senão M[s-1]:=0; s:=s - 1
-			int a = (int) pilhaM.get(registradorS.regS - 1);
-			int b = (int) pilhaM.get(registradorS.regS);
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
+			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 
 			if (a == 1 || b == 1) {
 				pilhaM.set(1, registradorS.regS - 1);
@@ -332,7 +331,7 @@ public class Vm {
 
 		// Negação
 		if (instrucao.equals("ned") && parametroA == "" && parametroB == "") {
-			int a = (int) pilhaM.get(registradorS.regS);// M[s] = 1 - M[s]
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			pilhaM.set(registradorS.regS, 1 - a);
 
 			registradorI.incrementarRegI();// I = i + 1
@@ -342,8 +341,8 @@ public class Vm {
 
 		// Comparar Menor
 		if (instrucao.equals("cme") && parametroA == "" && parametroB == "") {
-			int a = (int) pilhaM.get(registradorS.regS - 1);// se M[s-1] < M[s] então M[s-1] =1 senão M[s-1]=0
-			int b = (int) pilhaM.get(registradorS.regS);
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
+			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			if (a < b) {
 				pilhaM.set(registradorS.regS - 1, 1);
 			} else {
@@ -357,9 +356,8 @@ public class Vm {
 
 		// Comparar Maior
 		if (instrucao.equals("cma") && parametroA == "" && parametroB == "") {
-
-			int a = (int) pilhaM.get(registradorS.regS - 1);// se M[s-1] > M[s] então M[s-1] =1 senão M[s-1]=0
-			int b = (int) pilhaM.get(registradorS.regS);
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
+			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			if (a > b) {
 				pilhaM.set(registradorS.regS - 1, 1);
 			} else {
@@ -373,8 +371,9 @@ public class Vm {
 		// Comparar Igual
 		if (instrucao.equals("ceq") && parametroA == "" && parametroB == "") {
 
-			int a = (int) pilhaM.get(registradorS.regS - 1);// se M[s-1] == M[s] então M[s-1] =1 senão M[s-1]=0
-			int b = (int) pilhaM.get(registradorS.regS);
+	
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
+			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			if (a == b) {
 				pilhaM.set(registradorS.regS - 1, 1);
 			} else {
@@ -388,8 +387,8 @@ public class Vm {
 
 		// Comarar Desigual
 		if (instrucao.equals("cdif") && parametroA == "" && parametroB == "") {
-			int a = (int) pilhaM.get(registradorS.regS - 1);// se M[s-1] != M[s] então M[s-1] =1 senão M[s-1]=0
-			int b = (int) pilhaM.get(registradorS.regS);
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
+			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			if (a != b) {
 				pilhaM.set(registradorS.regS - 1, 1);
 			} else {
@@ -402,8 +401,8 @@ public class Vm {
 
 		// Comparar Menor ou Igual
 		if (instrucao.equals("cmeq") && parametroA == "" && parametroB == "") {
-			int a = (int) pilhaM.get(registradorS.regS - 1);// se M[s-1] <= M[s] então M[s-1] =1 senão M[s-1]=0
-			int b = (int) pilhaM.get(registradorS.regS);
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
+			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			if (a <= b) {
 				pilhaM.set(registradorS.regS - 1, 1);
 			} else {
@@ -416,8 +415,8 @@ public class Vm {
 
 		// Comparar Maior ou Igual
 		if (instrucao.equals("cmaq") && parametroA == "" && parametroB == "") {
-			int a = (int) pilhaM.get(registradorS.regS - 1);// se M[s-1] >= M[s] então M[s-1] =1 senão M[s-1]=0
-			int b = (int) pilhaM.get(registradorS.regS);
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
+			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			if (a >= b) {
 				pilhaM.set(registradorS.regS - 1, 1);
 			} else {
@@ -524,8 +523,9 @@ public class Vm {
 
 		// Retornar de Procedimento ou Função
 		if (instrucao.equals("return") && parametroA == "" && parametroB == "") {
-
-			registradorI.setRegI((int) pilhaM.get(registradorS.regS));
+			String i = pilhaM.get(registradorS.regS).toString();
+			
+			registradorI.setRegI(Integer.parseInt(i));
 			registradorS.decrementarRegS();
 
 		}

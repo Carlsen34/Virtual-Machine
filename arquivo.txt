@@ -1,10 +1,5 @@
 start
-ldc 0
-ldc 1
 ldc 2
 ldc 3
-ldc 4
-alloc 1 5
-dalloc 0 2
-prn
+inv
 hlt

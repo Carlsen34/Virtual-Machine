@@ -23,10 +23,9 @@ public class Vm {
 	public static Stack pilhaM = new Stack();
 
 	public static Stack AuxInstrucao = new Stack();
-	
+
 	public static Stack bpoints = new Stack();
 	public static Stack auxbp = new Stack();
-
 
 	public static JanelaPrincipal tela = new JanelaPrincipal();
 
@@ -39,22 +38,19 @@ public class Vm {
 	}
 
 	public static void debug() {
-		if(bp == false) {
-		bp = true;
-		tela.debugLabel.setText("DEBUG MODE");
-		tela.bpoint.setVisible(true);
-		tela.botoes.setPreferredSize(new Dimension(400, 100));
-		}else {
+		if (bp == false) {
+			bp = true;
+			tela.debugLabel.setText("DEBUG MODE");
+			tela.bpoint.setVisible(true);
+			tela.botoes.setPreferredSize(new Dimension(400, 100));
+		} else {
 			bp = false;
 			tela.debugLabel.setText("NORMAL MODE");
 			tela.bpoint.setVisible(false);
 			tela.botoes.setPreferredSize(new Dimension(300, 100));
 
-
-
-
 		}
-		
+
 	}
 
 	public static void executar() {
@@ -63,21 +59,19 @@ public class Vm {
 			executarDebug();
 		} else {
 
-		for(int i = 0; i<pilhaP.size();i++) {
-			executarPilhaP();
-			tela.exibirPilhaM(pilhaM);
+			for (int i = 0; i < pilhaP.size(); i++) {
+				executarPilhaP();
+				tela.exibirPilhaM(pilhaM);
 
-			System.out.println("Pilha P  = " + pilhaP);
-			System.out.println("Pilha M  = " + pilhaM);
-			System.out.println("Registrador S =  " + registradorS.regS);
-			System.out.println("Registrador I =  " + registradorI.regI);
-		}
+				System.out.println("Pilha P  = " + pilhaP);
+				System.out.println("Pilha M  = " + pilhaM);
+				System.out.println("Registrador S =  " + registradorS.regS);
+				System.out.println("Registrador I =  " + registradorI.regI);
+			}
 
 		}
 	}
-	
-	
-	
+
 	public static Stack addBP() {
 		String bp = JOptionPane.showInputDialog("Adicione um BreakPoint: ");
 		bpoints.push(bp);
@@ -87,21 +81,23 @@ public class Vm {
 
 	public static int executarDebug() {
 		int i = 0;
-		if(bpoints.isEmpty()==false) {
+		if (bpoints.isEmpty() == false) {
 			String aux = bpoints.get(0).toString();
 			bpoints.remove(0);
 			i = Integer.parseInt(aux);
 		}
-		
+
 		tela.exibirBP(bpoints);
 
-		if(i != 0 ) {
-			while(registradorI.regI != i) {
-				if(pilhaP.get(registradorI.regI).equals("hlt")) return 0;
-				else executarPilhaP();
+		if (i != 0) {
+			while (registradorI.regI != i) {
+				if (pilhaP.get(registradorI.regI).equals("hlt"))
+					return 0;
+				else
+					executarPilhaP();
 			}
 		}
-		
+
 		if (!pilhaP.get(registradorI.regI).equals("hlt")) {
 			executarPilhaP();
 			tela.exibirPilhaM(pilhaM);
@@ -143,7 +139,6 @@ public class Vm {
 		executarInstrucao(instrucao, a, b);
 		tela.exibirRegistradorI(registradorI.regI);
 		tela.exibirRegistradorS(registradorS.regS);
-
 
 	}
 
@@ -482,10 +477,13 @@ public class Vm {
 
 			for (k = 0; k < n; k++) {
 				registradorS.incrementarRegS();
-		
-					pilhaM.set(registradorS.regS,pilhaM.get( m + k));
-					
-					
+				// pilhaM.set(registradorS.regS,pilhaM.get( m + k));
+
+				if (pilhaM.size() == registradorS.regS) {
+					pilhaM.push(pilhaM.get(m + k));// M[s]:= “próximo valor de entrada”.
+				} else {
+					pilhaM.set(registradorS.regS, pilhaM.get(m + k));
+				}
 
 			}
 
@@ -500,8 +498,8 @@ public class Vm {
 			int n = Integer.parseInt(parametroB);
 			int k;
 
-			for (k = n; k > 0; k--) {
-				pilhaM.set(m+k, pilhaM.get(registradorS.regS));
+			for (k = n-1; k >= 0; k--) {
+				pilhaM.set(m + k, pilhaM.get(registradorS.regS));
 				registradorS.decrementarRegS();
 			}
 			registradorI.incrementarRegI();

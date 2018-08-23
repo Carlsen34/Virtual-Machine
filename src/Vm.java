@@ -80,10 +80,11 @@ public class Vm {
 			bpoints.remove(bpoints.indexOf(bp));
 		}else {
 		bpoints.push(bp);
-		}
+		}		
 		tela.exibirBP(bpoints);
 		return bpoints;
 	}
+	
 
 	public static int executarDebug() {
 		int i = 0;
@@ -282,8 +283,8 @@ public class Vm {
 		// Dividir
 		if (instrucao.equals("divi") && parametroA == "" && parametroB == "") {
 
-			int a = (int) pilhaM.get(registradorS.regS - 1);// M[s-1] = M[s-1] / M[s]
-			int b = (int) pilhaM.get(registradorS.regS);
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
+			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			pilhaM.set(registradorS.regS - 1, a / b);
 
 			registradorI.incrementarRegI();// I = i + 1

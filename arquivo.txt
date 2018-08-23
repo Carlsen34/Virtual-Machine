@@ -3,3 +3,4 @@ ldc 2
 ldc 3
 inv
 hlt
+start

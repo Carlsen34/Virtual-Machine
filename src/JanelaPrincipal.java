@@ -38,13 +38,15 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 	JLabel bpLabel = new JLabel();
 	JLabel instrucaoBP = new JLabel();
 
-
 	JButton debug = new JButton();
 	JButton continuar = new JButton();
 	JButton bpoint = new JButton();
 
 
 	public JanelaPrincipal() {
+		
+		
+		
 		tela.add(panel_esq);
 		tela.add(panel_dir);
 		tela.add(panel_bot_esq);
@@ -55,7 +57,9 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		panel_esq.setPreferredSize(new Dimension(500, 250));
 		panel_esq.setBorder(BorderFactory.createLineBorder(Color.black));
 		panel_esq.setBackground(Color.white);
-
+		
+		
+		
 		titulo.setPreferredSize(new Dimension(490,30));
 		label.setText("INSTRUÇÕES P[i]");
 		titulo.add(label);

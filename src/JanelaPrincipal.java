@@ -92,7 +92,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		titulo3.add(label3);
 		panel_bot_dir.add(titulo3);
 		
-		botoes.setPreferredSize(new Dimension(400, 100));
+		botoes.setPreferredSize(new Dimension(300, 100));
 
 
 		tela.setSize(1300, 700);
@@ -107,6 +107,8 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		bpoint.setText("BreakPoint");
 		bpoint.setBackground(Color.WHITE);
 		botoes.add(bpoint);
+		bpoint.setVisible(false);
+		
 		
 		continuar.setText("Continuar");
 		continuar.setBackground(Color.GREEN);
@@ -223,7 +225,6 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 
 			Stack bp = Vm.addBP();
 	
-			exibirBP(bp);
 		}
 
 	}

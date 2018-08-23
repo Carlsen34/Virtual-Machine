@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -34,16 +35,24 @@ public class Vm {
 		tela.exibirRegistradorI(registradorI.regI);
 		tela.exibirRegistradorS(registradorS.regS);
 		tela.exibirPilhaP(pilhaP);
-
+		tela.exibirBP(bpoints);
 	}
 
 	public static void debug() {
 		if(bp == false) {
 		bp = true;
 		tela.debugLabel.setText("DEBUG MODE");
+		tela.bpoint.setVisible(true);
+		tela.botoes.setPreferredSize(new Dimension(400, 100));
 		}else {
 			bp = false;
 			tela.debugLabel.setText("NORMAL MODE");
+			tela.bpoint.setVisible(false);
+			tela.botoes.setPreferredSize(new Dimension(300, 100));
+
+
+
+
 		}
 		
 	}
@@ -72,20 +81,22 @@ public class Vm {
 	public static Stack addBP() {
 		String bp = JOptionPane.showInputDialog("Adicione um BreakPoint: ");
 		bpoints.push(bp);
+		tela.exibirBP(bpoints);
 		return bpoints;
 	}
 
 	public static int executarDebug() {
 		int i = 0;
 		if(bpoints.isEmpty()==false) {
-			String aux = bpoints.pop().toString();
+			String aux = bpoints.get(0).toString();
+			bpoints.remove(0);
 			i = Integer.parseInt(aux);
 		}
 		
-		System.out.println("TESTE I" + i);
-		
+		tela.exibirBP(bpoints);
+
 		if(i != 0 ) {
-			while(registradorI.regI != i-1) {
+			while(registradorI.regI != i) {
 				if(pilhaP.get(registradorI.regI).equals("hlt")) return 0;
 				else executarPilhaP();
 			}

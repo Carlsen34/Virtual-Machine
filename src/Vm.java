@@ -31,10 +31,11 @@ public class Vm {
 
 	public Vm() {
 		criarPilhaP();
+		tela.exibirPilhaP(pilhaP);
+		tela.exibiInstrucaoBP(pilhaP.get(registradorI.regI).toString());
+		tela.exibirBP(bpoints);
 		tela.exibirRegistradorI(registradorI.regI);
 		tela.exibirRegistradorS(registradorS.regS);
-		tela.exibirPilhaP(pilhaP);
-		tela.exibirBP(bpoints);
 	}
 
 	public static void debug() {
@@ -73,8 +74,13 @@ public class Vm {
 	}
 
 	public static Stack addBP() {
-		String bp = JOptionPane.showInputDialog("Adicione um BreakPoint: ");
+		String bp = JOptionPane.showInputDialog("Adicionar/Remover BreakPoint: ");
+		
+		if(bpoints.indexOf(bp) != -1) {
+			bpoints.remove(bpoints.indexOf(bp));
+		}else {
 		bpoints.push(bp);
+		}
 		tela.exibirBP(bpoints);
 		return bpoints;
 	}
@@ -90,7 +96,7 @@ public class Vm {
 		tela.exibirBP(bpoints);
 
 		if (i != 0) {
-			while (registradorI.regI != i) {
+			while (registradorI.regI != i-1) {
 				if (pilhaP.get(registradorI.regI).equals("hlt"))
 					return 0;
 				else
@@ -100,6 +106,7 @@ public class Vm {
 
 		if (!pilhaP.get(registradorI.regI).equals("hlt")) {
 			executarPilhaP();
+			tela.exibiInstrucaoBP(pilhaP.get(registradorI.regI).toString());
 			tela.exibirPilhaM(pilhaM);
 			System.out.println("Pilha P  = " + pilhaP);
 			System.out.println("Pilha M  = " + pilhaM);

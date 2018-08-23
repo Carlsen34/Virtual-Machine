@@ -21,6 +21,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 	JPanel panel_dir = new JPanel();
 	JPanel panel_bot_esq = new JPanel();
 	JPanel panel_bot_dir = new JPanel();
+	JPanel bot_dirAux = new JPanel();
 	JPanel titulo = new JPanel();
 	JLabel label = new JLabel();
 	JPanel titulo1 = new JPanel();
@@ -35,6 +36,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 	JLabel pilhaM = new JLabel();
 	JLabel debugLabel = new JLabel();
 	JLabel bpLabel = new JLabel();
+	JLabel instrucaoBP = new JLabel();
 
 
 	JButton debug = new JButton();
@@ -43,8 +45,6 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 
 
 	public JanelaPrincipal() {
-		
-
 		tela.add(panel_esq);
 		tela.add(panel_dir);
 		tela.add(panel_bot_esq);
@@ -55,10 +55,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		panel_esq.setPreferredSize(new Dimension(500, 250));
 		panel_esq.setBorder(BorderFactory.createLineBorder(Color.black));
 		panel_esq.setBackground(Color.white);
-		
 
-
-		
 		titulo.setPreferredSize(new Dimension(490,30));
 		label.setText("INSTRUÇÕES P[i]");
 		titulo.add(label);
@@ -86,6 +83,9 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		panel_bot_dir.setPreferredSize(new Dimension(500, 250));
 		panel_bot_dir.setBorder(BorderFactory.createLineBorder(Color.black));
 		panel_bot_dir.setBackground(Color.white);
+		
+		
+
 		
 		titulo3.setPreferredSize(new Dimension(490,30));
 		label3.setText("BREAK POINT");
@@ -117,6 +117,10 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		debugLabel.setText("NORMAL MODE");
 		botoes.add(debugLabel);
 		
+		bot_dirAux.setPreferredSize(new Dimension(150, 200));
+		bot_dirAux.setBackground(Color.white);
+		panel_bot_dir.add(bot_dirAux);
+		
 		continuar.addActionListener(this);
 		debug.addActionListener(this);
 		bpoint.addActionListener(this);
@@ -124,6 +128,11 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 
 	}
 	
+	
+	public void exibiInstrucaoBP(String instrucao) {
+		instrucaoBP.setText("Instrucao:" +  instrucao);
+		bot_dirAux.add(instrucaoBP);
+	}
 	
 	
 	public void printPrn(String prn) {
@@ -179,8 +188,10 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 			b = (String) AuxInstrucao.get(2);
 		}
 
+		
 		pilhaAux = pilhaAux +"P[" + i + "] " + instrucao + " " + a + " " + b + "<br/>";
 		
+
 		}
 		
 		label.setText("<html>"+ pilhaAux + "<br/>"+"</html>");
@@ -188,14 +199,15 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 	}
 
 	public void exibirRegistradorI(int rgI) {
-		rgi.setText("Registrador I = " + Integer.toString(rgI));
+		String aux = "Registrador I = " + Integer.toString(rgI) ;
+		rgi.setText("<html>"+ aux + "<br/>"+"</html>");
 		panel_esq.add(rgi);
-		panel_bot_dir.add(rgi);
+		bot_dirAux.add(rgi);
 	}
 
 	public void exibirRegistradorS(int rgS) {
 		rgs.setText("Registrador S = " + Integer.toString(rgS));
-		panel_bot_dir.add(rgs);
+		bot_dirAux.add(rgs);
 
 	}
 	
@@ -208,7 +220,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		}
 		
 		bpLabel.setText("BreakPoint's : " + aux);
-		panel_bot_dir.add(bpLabel);
+		bot_dirAux.add(bpLabel);
 	}
 
 	@Override

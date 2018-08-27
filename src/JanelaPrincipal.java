@@ -155,11 +155,6 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 	
 	
 	public void printPrn(Stack pilha) {
-//		JLabel prnInstruction = new JLabel();
-//		prnInstruction.setText("<html>"+ pilha + "<br/>"+"</html>");
-//		panel_bot_esq.add(prnInstruction);
-		
-		
 		String pilhaAux = "";
 		for (int i = 0; i < pilha.size(); i++) {
 			
@@ -170,9 +165,6 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		panel_bot_esq.add(prn);
 		
 		if(pilha.size()*18>250) panel_bot_esq.setPreferredSize(new Dimension(500,pilha.size()*18));
-		
-		
-		
 	}
 
 	public void exibirPilhaM(Stack pilha) {

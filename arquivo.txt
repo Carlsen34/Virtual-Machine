@@ -1,7 +1,8 @@
 start
+ldc 1
+rd
+jmpf 6
 ldc 2
-ldc 3
 add
-inv
-prn
+null
 hlt

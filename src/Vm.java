@@ -76,13 +76,14 @@ public class Vm {
 
 	public static Stack addBP() {
 		String bp = JOptionPane.showInputDialog("Adicionar/Remover BreakPoint: ");
-		
+		if(bp != null) {
 		if(bpoints.indexOf(bp) != -1) {
 			bpoints.remove(bpoints.indexOf(bp));
 		}else {
 		bpoints.push(bp);
 		}		
 		tela.exibirBP(bpoints);
+		}
 		return bpoints;
 	}
 	
@@ -236,6 +237,8 @@ public class Vm {
 		if (instrucao.equals("ldv") && parametroA != "" && parametroB == "") {
 
 			int a = Integer.parseInt(parametroA);
+			registradorS.incrementarRegS();// Incrementar S
+
 
 			if (pilhaM.size() < a) {
 
@@ -243,12 +246,11 @@ public class Vm {
 			}
 
 			if (pilhaM.size() == registradorS.regS) {
-				pilhaM.push(a);// M[s]:= “próximo valor de entrada”.
+				pilhaM.push(pilhaM.get(a));// M[s]:= “próximo valor de entrada”.
 			} else {
-				pilhaM.set(registradorS.regS, a);
+				pilhaM.set(registradorS.regS, pilhaM.get(a));
 			}
 
-			registradorS.incrementarRegS();// Incrementar S
 			registradorI.incrementarRegI();// Incrementar I
 
 		}
@@ -312,9 +314,9 @@ public class Vm {
 			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 
 			if (a == 1 && b == 1) {
-				pilhaM.set(1, registradorS.regS - 1);
+				pilhaM.set(registradorS.regS - 1, 1);
 			} else {
-				pilhaM.set(0, registradorS.regS - 1);
+				pilhaM.set(registradorS.regS - 1, 0);
 
 			}
 
@@ -329,11 +331,10 @@ public class Vm {
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
 			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 
-			if (a == 1 || b == 1) {
-				pilhaM.set(1, registradorS.regS - 1);
+			if(a == 1 || b == 1) {
+				pilhaM.set(registradorS.regS - 1, 1);
 			} else {
-				pilhaM.set(0, registradorS.regS - 1);
-
+				pilhaM.set(registradorS.regS - 1, 0);
 			}
 
 			registradorI.incrementarRegI();// I = i + 1
@@ -341,7 +342,7 @@ public class Vm {
 		}
 
 		// Negação
-		if (instrucao.equals("ned") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("neg") && parametroA == "" && parametroB == "") {
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			pilhaM.set(registradorS.regS, 1 - a);
 
@@ -440,13 +441,13 @@ public class Vm {
 		// Armazenar Valor
 		if (instrucao.equals("str") && parametroA != "" && parametroB == "") {
 
-			int a = Integer.parseInt(parametroA);
+			int n = Integer.parseInt(parametroA);
 
-			if (pilhaM.size() < a) {
+			if (pilhaM.size() < n) {
 				System.out.println("Tamanho da pilha não devera ser menor que paramentroA ");
 			}
 
-			pilhaM.set(a, pilhaM.get(registradorS.regS));// M[n]:=M[s]; s:=s-1
+			pilhaM.set(n, pilhaM.get(registradorS.regS));// M[n]:=M[s]; s:=s-1
 			registradorS.decrementarRegS();
 			registradorI.incrementarRegI();
 
@@ -462,7 +463,7 @@ public class Vm {
 
 		// Desviar se falso
 		if (instrucao.equals("jmpf") && parametroA != "" && parametroB == "") {
-			int a = (int) pilhaM.get(registradorS.regS);
+			int a = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			if (a == 0) {// se M[s] = 0 então i = parametroA
 				registradorI.setRegI(Integer.parseInt(parametroA));
 			} else {// senão i:=i + 1;

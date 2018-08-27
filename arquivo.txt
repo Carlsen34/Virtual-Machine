@@ -1,6 +1,7 @@
 start
 ldc 2
 ldc 3
+add
 inv
+prn
 hlt
-start

@@ -34,9 +34,11 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 	JLabel rgi = new JLabel();
 	JLabel rgs = new JLabel();
 	JLabel pilhaM = new JLabel();
+	JLabel prn = new JLabel();
 	JLabel debugLabel = new JLabel();
 	JLabel bpLabel = new JLabel();
 	JLabel instrucaoBP = new JLabel();
+	JPanel rodape = new JPanel();
 
 	JButton debug = new JButton();
 	JButton continuar = new JButton();
@@ -45,16 +47,30 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 
 	public JanelaPrincipal() {
 		
-		
-		
 		tela.add(panel_esq);
+		final JScrollPane scrollEsq = new JScrollPane(panel_esq, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);//this is for the main panel 		
+		scrollEsq.setPreferredSize(new Dimension(500,250));
+		tela.add(scrollEsq);
 		tela.add(panel_dir);
+		final JScrollPane scrollDir = new JScrollPane(panel_dir, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);//this is for the main panel 		
+		scrollDir.setPreferredSize(new Dimension(500,250));
+		tela.add(scrollDir);
 		tela.add(panel_bot_esq);
+		final JScrollPane scrollBotEsq = new JScrollPane(panel_bot_esq, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);//this is for the main panel 		
+		scrollBotEsq.setPreferredSize(new Dimension(500,250));
+		tela.add(scrollBotEsq);
+		
 		tela.add(panel_bot_dir);
+		final JScrollPane scrollBotDir = new JScrollPane(panel_bot_dir, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);//this is for the main panel 		
+		scrollBotDir.setPreferredSize(new Dimension(500,250));
+		tela.add(scrollBotDir);
 		tela.add(botoes);
+		tela.add(rodape);
+		
 		tela.setLayout(new FlowLayout());
 
-		panel_esq.setPreferredSize(new Dimension(500, 250));
+		System.out.println(Vm.pilhaP.size()*10);
+		panel_esq.setPreferredSize(new Dimension(500,250));
 		panel_esq.setBorder(BorderFactory.createLineBorder(Color.black));
 		panel_esq.setBackground(Color.white);
 		
@@ -98,6 +114,8 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		
 		botoes.setPreferredSize(new Dimension(300, 100));
 
+		rodape.setPreferredSize(new Dimension(200, 150));
+	
 
 		tela.setSize(1300, 700);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -121,10 +139,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		debugLabel.setText("NORMAL MODE");
 		botoes.add(debugLabel);
 		
-		bot_dirAux.setPreferredSize(new Dimension(150, 200));
-		bot_dirAux.setBackground(Color.white);
-		panel_bot_dir.add(bot_dirAux);
-		
+
 		continuar.addActionListener(this);
 		debug.addActionListener(this);
 		bpoint.addActionListener(this);
@@ -135,14 +150,29 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 	
 	public void exibiInstrucaoBP(String instrucao) {
 		instrucaoBP.setText("Instrucao:" +  instrucao);
-		bot_dirAux.add(instrucaoBP);
+		rodape.add(instrucaoBP);
 	}
 	
 	
-	public void printPrn(String prn) {
-		JLabel prnInstruction = new JLabel();
-		prnInstruction.setText("<html>"+ prn + "<br/>"+"</html>");
-		panel_bot_esq.add(prnInstruction);
+	public void printPrn(Stack pilha) {
+//		JLabel prnInstruction = new JLabel();
+//		prnInstruction.setText("<html>"+ pilha + "<br/>"+"</html>");
+//		panel_bot_esq.add(prnInstruction);
+		
+		
+		String pilhaAux = "";
+		for (int i = 0; i < pilha.size(); i++) {
+			
+			pilhaAux = pilhaAux + pilha.get(i).toString() + "<br/>";
+		}
+		
+		prn.setText("<html>"+ pilhaAux + "<br/>"+"</html>");
+		panel_bot_esq.add(prn);
+		
+		if(pilha.size()*18>250) panel_bot_esq.setPreferredSize(new Dimension(500,pilha.size()*18));
+		
+		
+		
 	}
 
 	public void exibirPilhaM(Stack pilha) {
@@ -155,13 +185,13 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		
 		pilhaM.setText("<html>"+ pilhaAux + "<br/>"+"</html>");
 		panel_dir.add(pilhaM);
-
+		
+		if(pilha.size()*18>250) panel_dir.setPreferredSize(new Dimension(500,pilha.size()*18));
+		
 
 	}
 
 	public void exibirPilhaP(Stack pilha) {
-
-	
 		String pilhaAux = "";
 		String instrucao;
 		String a;
@@ -200,18 +230,19 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		
 		label.setText("<html>"+ pilhaAux + "<br/>"+"</html>");
 		panel_esq.add(label);
+		panel_esq.setPreferredSize(new Dimension(500,pilha.size()*18));
 	}
 
 	public void exibirRegistradorI(int rgI) {
 		String aux = "Registrador I = " + Integer.toString(rgI) ;
 		rgi.setText("<html>"+ aux + "<br/>"+"</html>");
 		panel_esq.add(rgi);
-		bot_dirAux.add(rgi);
+		rodape.add(rgi);
 	}
 
 	public void exibirRegistradorS(int rgS) {
 		rgs.setText("Registrador S = " + Integer.toString(rgS));
-		bot_dirAux.add(rgs);
+		rodape.add(rgs);
 
 	}
 	
@@ -220,11 +251,14 @@ public class JanelaPrincipal extends JFrame implements ActionListener {
 		String aux = "";
 		
 		for(int i = 0;i < bp.size();i++) {
-			aux = aux + bp.get(i) + " ";
+			int x = i + 1;
+			aux = aux + "BP[" + x +"] = " + bp.get(i) + "<br/>";
 		}
 		
-		bpLabel.setText("BreakPoint's : " + aux);
-		bot_dirAux.add(bpLabel);
+		bpLabel.setText("<html>" + aux + "<br/>"+"</html>");
+		panel_bot_dir.add(bpLabel);
+		if(bp.size()*18>250)panel_bot_dir.setPreferredSize(new Dimension(500,bp.size()*18));
+
 	}
 
 	@Override

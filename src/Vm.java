@@ -26,6 +26,7 @@ public class Vm {
 
 	public static Stack bpoints = new Stack();
 	public static Stack auxbp = new Stack();
+	public static Stack prnPilha = new Stack();
 
 	public static JanelaPrincipal tela = new JanelaPrincipal();
 
@@ -190,6 +191,7 @@ public class Vm {
 		if (instrucao.equals("hlt") && parametroA == "" && parametroB == "") {
 			JOptionPane.showMessageDialog(null, "FIM DE PROGRAMA !");
 			tela.botoes.setVisible(false);
+			tela.rodape.setVisible(false);
 		}
 
 		// Instrucao de escrita
@@ -210,7 +212,8 @@ public class Vm {
 		if (instrucao.equals("prn") && parametroA == "" && parametroB == "") {
 
 			System.out.println(pilhaM.get(registradorS.regS));
-			tela.printPrn(pilhaM.get(registradorS.regS).toString());
+			prnPilha.push(pilhaM.get(registradorS.regS));
+			tela.printPrn(prnPilha);
 			registradorS.decrementarRegS(); // S:=s - 1;
 			registradorI.incrementarRegI(); // I:=i + 1;
 

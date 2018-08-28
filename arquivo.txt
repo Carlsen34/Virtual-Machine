@@ -1,8 +1,8 @@
-start
-ldc 1
-rd
-jmpf 6
-ldc 2
-add
-null
-hlt
+START
+CALL 4
+LDC 1
+JMP 7
+LDC 3
+PRN
+RETURN
+HLT

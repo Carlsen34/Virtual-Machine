@@ -182,21 +182,21 @@ public class Vm {
 	public static void executarInstrucao(String instrucao, String parametroA, String parametroB) {
 
 		// Inicia Programa Principal
-		if (instrucao.equals("start") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("START") && parametroA == "" && parametroB == "") {
 			registradorS.setRegS(-1);// Setar Regs = -1
 			registradorI.incrementarRegI(); // Incrementar RegI
 
 		}
 
 		// Para a execução MVD
-		if (instrucao.equals("hlt") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("HLT") && parametroA == "" && parametroB == "") {
 			JOptionPane.showMessageDialog(null, "FIM DE PROGRAMA !");
 			tela.botoes.setVisible(false);
 			tela.rodape.setVisible(false);
 		}
 
 		// Instrucao de escrita
-		if (instrucao.equals("rd") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("RD") && parametroA == "" && parametroB == "") {
 			registradorS.incrementarRegS(); // S:=s + 1;
 
 			String input = JOptionPane.showInputDialog("Digite um valor: ");
@@ -210,7 +210,7 @@ public class Vm {
 
 		}
 		// Impressao
-		if (instrucao.equals("prn") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("PRN") && parametroA == "" && parametroB == "") {
 
 			System.out.println(pilhaM.get(registradorS.regS));
 			prnPilha.push(pilhaM.get(registradorS.regS));
@@ -221,7 +221,7 @@ public class Vm {
 		}
 
 		// Carregar constante
-		if (instrucao.equals("ldc") && parametroA != "" && parametroB == "") {
+		if (instrucao.equals("LDC") && parametroA != "" && parametroB == "") {
 
 			registradorS.incrementarRegS();// Incrementar S
 			if (pilhaM.size() == registradorS.regS) {
@@ -234,7 +234,7 @@ public class Vm {
 
 		}
 		// Carregar valor
-		if (instrucao.equals("ldv") && parametroA != "" && parametroB == "") {
+		if (instrucao.equals("LDV") && parametroA != "" && parametroB == "") {
 
 			int a = Integer.parseInt(parametroA);
 			registradorS.incrementarRegS();// Incrementar S
@@ -256,7 +256,7 @@ public class Vm {
 		}
 
 		// Somar
-		if (instrucao.equals("add") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("ADD") && parametroA == "" && parametroB == "") {
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
 			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			pilhaM.set(registradorS.regS - 1, a + b);
@@ -267,7 +267,7 @@ public class Vm {
 		}
 
 		// Subtrair
-		if (instrucao.equals("sub") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("SUB") && parametroA == "" && parametroB == "") {
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
 			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			pilhaM.set(registradorS.regS - 1, a - b);
@@ -276,7 +276,7 @@ public class Vm {
 		}
 
 		// Multiplicar
-		if (instrucao.equals("mult") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("MULT") && parametroA == "" && parametroB == "") {
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
 			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			pilhaM.set(registradorS.regS - 1, a * b);
@@ -286,7 +286,7 @@ public class Vm {
 		}
 
 		// Dividir
-		if (instrucao.equals("divi") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("DIVI") && parametroA == "" && parametroB == "") {
 
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
 			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
@@ -298,7 +298,7 @@ public class Vm {
 
 		// Inverter Sinal
 
-		if (instrucao.equals("inv") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("INV") && parametroA == "" && parametroB == "") {
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			pilhaM.set(registradorS.regS, a * -1);
 
@@ -307,7 +307,7 @@ public class Vm {
 		}
 
 		// Conjunção
-		if (instrucao.equals("and") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("AND") && parametroA == "" && parametroB == "") {
 
 			// se M [s-1] = 1 e M[s] = 1 então M[s-1]:=1 senão M[s-1]:=0; s:=s - 1
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
@@ -326,7 +326,7 @@ public class Vm {
 
 		// Disjunção
 
-		if (instrucao.equals("or") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("OR") && parametroA == "" && parametroB == "") {
 			// se M[s-1] = 1 ou M[s] = 1 então M[s-1]:=1 senão M[s-1]:=0; s:=s - 1
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
 			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
@@ -342,7 +342,7 @@ public class Vm {
 		}
 
 		// Negação
-		if (instrucao.equals("neg") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("NEG") && parametroA == "" && parametroB == "") {
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			pilhaM.set(registradorS.regS, 1 - a);
 
@@ -352,7 +352,7 @@ public class Vm {
 		}
 
 		// Comparar Menor
-		if (instrucao.equals("cme") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("CME") && parametroA == "" && parametroB == "") {
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
 			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			if (a < b) {
@@ -367,7 +367,7 @@ public class Vm {
 		}
 
 		// Comparar Maior
-		if (instrucao.equals("cma") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("CMA") && parametroA == "" && parametroB == "") {
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
 			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			if (a > b) {
@@ -381,7 +381,7 @@ public class Vm {
 		}
 
 		// Comparar Igual
-		if (instrucao.equals("ceq") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("CEQ") && parametroA == "" && parametroB == "") {
 
 	
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
@@ -398,7 +398,7 @@ public class Vm {
 		}
 
 		// Comarar Desigual
-		if (instrucao.equals("cdif") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("CDIF") && parametroA == "" && parametroB == "") {
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
 			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			if (a != b) {
@@ -412,7 +412,7 @@ public class Vm {
 		}
 
 		// Comparar Menor ou Igual
-		if (instrucao.equals("cmeq") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("CMEQ") && parametroA == "" && parametroB == "") {
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
 			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			if (a <= b) {
@@ -426,7 +426,7 @@ public class Vm {
 		}
 
 		// Comparar Maior ou Igual
-		if (instrucao.equals("cmaq") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("CMAQ") && parametroA == "" && parametroB == "") {
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS - 1).toString()) ;
 			int b = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			if (a >= b) {
@@ -439,7 +439,7 @@ public class Vm {
 			registradorS.decrementarRegS();// S = s - 1
 		}
 		// Armazenar Valor
-		if (instrucao.equals("str") && parametroA != "" && parametroB == "") {
+		if (instrucao.equals("STR") && parametroA != "" && parametroB == "") {
 
 			int n = Integer.parseInt(parametroA);
 
@@ -455,14 +455,14 @@ public class Vm {
 
 		// Desvios não intrementa RegI
 		// Desviar Sempre
-		if (instrucao.equals("jmp") && parametroA != "" && parametroB == "") {
+		if (instrucao.equals("JMP") && parametroA != "" && parametroB == "") {
 
 			registradorI.setRegI(Integer.parseInt(parametroA));
 
 		}
 
 		// Desviar se falso
-		if (instrucao.equals("jmpf") && parametroA != "" && parametroB == "") {
+		if (instrucao.equals("JMPF") && parametroA != "" && parametroB == "") {
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			if (a == 0) {// se M[s] = 0 então i = parametroA
 				registradorI.setRegI(Integer.parseInt(parametroA));
@@ -474,13 +474,13 @@ public class Vm {
 		}
 
 		// Operacao Nula
-		if (instrucao.equals("null") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("NULL") && parametroA == "" && parametroB == "") {
 			registradorI.incrementarRegI();
 
 		}
 
 		// Alocar Memoria
-		if (instrucao.equals("alloc") && parametroA != "" && parametroB != "") {
+		if (instrucao.equals("ALLOC") && parametroA != "" && parametroB != "") {
 
 			int m = Integer.parseInt(parametroA);
 			int n = Integer.parseInt(parametroB);
@@ -503,7 +503,7 @@ public class Vm {
 		}
 
 		// Desalocar Memoria
-		if (instrucao.equals("dalloc") && parametroA != "" && parametroB != "") {
+		if (instrucao.equals("DALLOC") && parametroA != "" && parametroB != "") {
 
 			int m = Integer.parseInt(parametroA);
 			int n = Integer.parseInt(parametroB);
@@ -518,7 +518,7 @@ public class Vm {
 		}
 
 		// Chamar Procedimento ou Função
-		if (instrucao.equals("call") && parametroA != "" && parametroB == "") {
+		if (instrucao.equals("CALL") && parametroA != "" && parametroB == "") {
 
 			int t = Integer.parseInt(parametroA);
 			registradorS.incrementarRegS();
@@ -534,7 +534,7 @@ public class Vm {
 		}
 
 		// Retornar de Procedimento ou Função
-		if (instrucao.equals("return") && parametroA == "" && parametroB == "") {
+		if (instrucao.equals("RETURN") && parametroA == "" && parametroB == "") {
 			String i = pilhaM.get(registradorS.regS).toString();
 			
 			registradorI.setRegI(Integer.parseInt(i));

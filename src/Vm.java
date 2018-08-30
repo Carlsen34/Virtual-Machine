@@ -11,8 +11,9 @@ import javax.swing.JOptionPane;
 
 public class Vm {
 
-	static Boolean bp = false;
-
+	public static Boolean bp = false;
+	public static Boolean fim = false;
+	
 	// Contem o endereço da proxima instrução a ser executada.
 	public static RegistradorI registradorI = new RegistradorI();
 	// Representa o elemento do topo da pilha M.
@@ -190,9 +191,12 @@ public class Vm {
 
 		// Para a execução MVD
 		if (instrucao.equals("HLT") && parametroA == "" && parametroB == "") {
+			if(fim == false) {
 			JOptionPane.showMessageDialog(null, "FIM DE PROGRAMA !");
 			tela.botoes.setVisible(false);
 			tela.rodape.setVisible(false);
+			fim = true;
+			}
 		}
 
 		// Instrucao de escrita

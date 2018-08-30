@@ -491,7 +491,11 @@ public class Vm {
 				// pilhaM.set(registradorS.regS,pilhaM.get( m + k));
 
 				if (pilhaM.size() == registradorS.regS) {
+					if(m+k >= pilhaM.size()) {
+					pilhaM.push("");
+					}else {
 					pilhaM.push(pilhaM.get(m + k));// M[s]:= “próximo valor de entrada”.
+					}
 				} else {
 					pilhaM.set(registradorS.regS, pilhaM.get(m + k));
 				}

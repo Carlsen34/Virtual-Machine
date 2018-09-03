@@ -120,6 +120,17 @@ public class Vm {
 		return 0;
 	}
 
+//	public static int findJump(String paramA) {
+//		int num;
+//		for(num = registradorI.regI+1;num<pilhaP.size();num++) {
+//
+//			if(paramA.equals(pilhaP.get(num))) {
+//				System.out.println("ACHEI");
+//			}
+//		}
+//		return num;
+//	}
+	
 	public static void executarPilhaP() {
 		String pilha;
 		String instrucao;
@@ -461,6 +472,8 @@ public class Vm {
 		// Desviar Sempre
 		if (instrucao.equals("JMP") && parametroA != "" && parametroB == "") {
 
+//			int num = findJump(parametroA);
+//			registradorI.setRegI(num);
 			registradorI.setRegI(Integer.parseInt(parametroA));
 
 		}
@@ -550,5 +563,7 @@ public class Vm {
 
 		}
 	}
+
+
 
 }

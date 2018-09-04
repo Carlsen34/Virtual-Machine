@@ -120,16 +120,25 @@ public class Vm {
 		return 0;
 	}
 
-//	public static int findJump(String paramA) {
-//		int num;
-//		for(num = registradorI.regI+1;num<pilhaP.size();num++) {
-//
-//			if(paramA.equals(pilhaP.get(num))) {
-//				System.out.println("ACHEI");
-//			}
-//		}
-//		return num;
-//	}
+	public static int findJump(String paramA) {
+		int num;
+		System.out.println(registradorI.regI);
+		
+		for(int i = 0;i<pilhaP.size();i++) {
+		Stack AuxInstrucao = (Stack) pilhaP.get(i);
+		String aux = AuxInstrucao.get(0).toString();
+		
+		if(aux.equals(paramA)) {
+
+			return i;
+		
+		}
+		
+		}
+		
+		return 0;
+
+	}
 	
 	public static void executarPilhaP() {
 		String pilha;
@@ -472,9 +481,8 @@ public class Vm {
 		// Desviar Sempre
 		if (instrucao.equals("JMP") && parametroA != "" && parametroB == "") {
 
-//			int num = findJump(parametroA);
-//			registradorI.setRegI(num);
-			registradorI.setRegI(Integer.parseInt(parametroA));
+			int num = findJump(parametroA);
+			registradorI.setRegI(num);
 
 		}
 
@@ -482,7 +490,11 @@ public class Vm {
 		if (instrucao.equals("JMPF") && parametroA != "" && parametroB == "") {
 			int a = Integer.parseInt(pilhaM.get(registradorS.regS).toString());
 			if (a == 0) {// se M[s] = 0 então i = parametroA
-				registradorI.setRegI(Integer.parseInt(parametroA));
+
+				int num = findJump(parametroA);
+				registradorI.setRegI(num);
+			
+			
 			} else {// senão i:=i + 1;
 				registradorI.incrementarRegI();
 			}
@@ -492,6 +504,11 @@ public class Vm {
 
 		// Operacao Nula
 		if (instrucao.equals("NULL") && parametroA == "" && parametroB == "") {
+			registradorI.incrementarRegI();
+
+		}
+		
+		if (parametroA.equals("NULL") && parametroB == "") {
 			registradorI.incrementarRegI();
 
 		}
@@ -541,7 +558,11 @@ public class Vm {
 		// Chamar Procedimento ou Função
 		if (instrucao.equals("CALL") && parametroA != "" && parametroB == "") {
 
-			int t = Integer.parseInt(parametroA);
+			
+			int t = findJump(parametroA);
+			registradorI.setRegI(t);
+			
+			//int t = Integer.parseInt(parametroA);
 			registradorS.incrementarRegS();
 
 			if (pilhaM.size() == registradorS.regS) {

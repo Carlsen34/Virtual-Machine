@@ -184,10 +184,10 @@ public class Vm {
 			
 			
 			// Cria arquivo
-			File file = new File("programaObj.txt");
+			File file = new File("/home/softvaro/Área de Trabalho/Compilador/Compilador/Virtual-Machine/programaObj.txt");
 
 			// Le o arquivo
-			FileReader ler = new FileReader("/home/carlsen/Desktop/Faculdade/Compiladores/Projetos/Virtual-Machine/programaObj.txt");
+			FileReader ler = new FileReader("/home/softvaro/Área de Trabalho/Compilador/Compilador/Virtual-Machine/programaObj.txt");
 			BufferedReader reader = new BufferedReader(ler);
 			String linha;
 			while ((linha = reader.readLine()) != null) {
@@ -209,6 +209,9 @@ public class Vm {
 
 	public static void executarInstrucao(String instrucao, String parametroA, String parametroB) {
 
+		
+		
+		
 		// Inicia Programa Principal
 		if (instrucao.equals("START") && parametroA == "" && parametroB == "") {
 			registradorS.setRegS(-1);// Setar Regs = -1
@@ -582,7 +585,7 @@ public class Vm {
 
 		}
 
-		// Retornar de Procedimento ou Função
+		// Retornar de Procedimento
 		if (instrucao.equals("RETURN") && parametroA == "" && parametroB == "") {
 			String i = pilhaM.get(registradorS.regS).toString();
 			
@@ -590,6 +593,28 @@ public class Vm {
 			registradorS.decrementarRegS();
 
 		}
+		
+		// Retorno de Função
+		if (instrucao.equals("RETURNF")) {
+			if(parametroA != "" && parametroB != "") {
+				int m = Integer.parseInt(parametroA);
+				int n = Integer.parseInt(parametroB);
+				int k;
+
+				for (k = n-1; k >= 0; k--) {
+					pilhaM.set(m + k, pilhaM.get(registradorS.regS));
+					registradorS.decrementarRegS();
+				}
+				registradorI.incrementarRegI();
+			}
+			String i = pilhaM.get(registradorS.regS).toString();
+			registradorI.setRegI(Integer.parseInt(i));
+			registradorS.decrementarRegS();
+
+		}
+		
+		
+		
 	}
 
 

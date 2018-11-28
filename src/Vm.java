@@ -1,8 +1,10 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.Stack;
@@ -30,7 +32,6 @@ public class Vm {
 	public static Stack prnPilha = new Stack();
 
 	public static JanelaPrincipal tela = new JanelaPrincipal();
-
 	public Vm() {
 		criarPilhaP();
 		tela.exibirPilhaP(pilhaP);
@@ -174,13 +175,19 @@ public class Vm {
 	}
 
 	public static void criarPilhaP() {
+	
+		
+		
 
 		try {
+			
+			
+			
 			// Cria arquivo
-			File file = new File("arquivo.txt");
+			File file = new File("programaObj.txt");
 
 			// Le o arquivo
-			FileReader ler = new FileReader("arquivo.txt");
+			FileReader ler = new FileReader("/home/carlsen/Desktop/Faculdade/Compiladores/Projetos/Virtual-Machine/programaObj.txt");
 			BufferedReader reader = new BufferedReader(ler);
 			String linha;
 			while ((linha = reader.readLine()) != null) {
@@ -560,7 +567,7 @@ public class Vm {
 
 			
 			int t = findJump(parametroA);
-			registradorI.setRegI(t);
+			//registradorI.setRegI(t);
 			
 			//int t = Integer.parseInt(parametroA);
 			registradorS.incrementarRegS();

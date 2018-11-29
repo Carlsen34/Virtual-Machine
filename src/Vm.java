@@ -184,10 +184,10 @@ public class Vm {
 			
 			
 			// Cria arquivo
-			File file = new File("/home/softvaro/Área de Trabalho/Compilador/Compilador/Virtual-Machine/programaObj.txt");
+			File file = new File("/home/carlsen/Desktop/Faculdade/Compiladores/Projetos/Virtual-Machine/programaObj.txt");
 
 			// Le o arquivo
-			FileReader ler = new FileReader("/home/softvaro/Área de Trabalho/Compilador/Compilador/Virtual-Machine/programaObj.txt");
+			FileReader ler = new FileReader("/home/carlsen/Desktop/Faculdade/Compiladores/Projetos/Virtual-Machine/programaObj.txt");
 			BufferedReader reader = new BufferedReader(ler);
 			String linha;
 			while ((linha = reader.readLine()) != null) {
@@ -541,6 +541,9 @@ public class Vm {
 					pilhaM.push(pilhaM.get(m + k));// M[s]:= “próximo valor de entrada”.
 					}
 				} else {
+					while(m+k >= pilhaM.size()) {
+						pilhaM.push("");
+					}
 					pilhaM.set(registradorS.regS, pilhaM.get(m + k));
 				}
 

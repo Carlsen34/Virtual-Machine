@@ -381,7 +381,7 @@ public class Vm {
 			pilhaM.set(registradorS.regS, 1 - a);
 
 			registradorI.incrementarRegI();// I = i + 1
-			registradorS.decrementarRegS();// S = s - 1
+			//registradorS.decrementarRegS();// S = s - 1
 
 		}
 

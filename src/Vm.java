@@ -66,11 +66,6 @@ public class Vm {
 			for (int i = 0; i < pilhaP.size(); i++) {
 				executarPilhaP();
 				tela.exibirPilhaM(pilhaM);
-
-				System.out.println("Pilha P  = " + pilhaP);
-				System.out.println("Pilha M  = " + pilhaM);
-				System.out.println("Registrador S =  " + registradorS.regS);
-				System.out.println("Registrador I =  " + registradorI.regI);
 			}
 
 		}
@@ -113,10 +108,6 @@ public class Vm {
 			executarPilhaP();
 			tela.exibiInstrucaoBP(pilhaP.get(registradorI.regI).toString());
 			tela.exibirPilhaM(pilhaM);
-			System.out.println("Pilha P  = " + pilhaP);
-			System.out.println("Pilha M  = " + pilhaM);
-			System.out.println("Registrador S =  " + registradorS.regS);
-			System.out.println("Registrador I =  " + registradorI.regI);
 		}
 		return 0;
 	}
@@ -167,7 +158,6 @@ public class Vm {
 			b = (String) AuxInstrucao.get(2);
 		}
 
-		System.out.println(AuxInstrucao);
 		executarInstrucao(instrucao, a, b);
 		tela.exibirRegistradorI(registradorI.regI);
 		tela.exibirRegistradorS(registradorS.regS);
@@ -184,10 +174,10 @@ public class Vm {
 			
 			
 			// Cria arquivo
-			File file = new File("/home/carlsen/Desktop/Faculdade/Compiladores/Projetos/Virtual-Machine/programaObj.txt");
+			File file = new File("Virtual-Machine/programaObj.txt");
 
 			// Le o arquivo
-			FileReader ler = new FileReader("/home/carlsen/Desktop/Faculdade/Compiladores/Projetos/Virtual-Machine/programaObj.txt");
+			FileReader ler = new FileReader("Virtual-Machine/programaObj.txt");
 			BufferedReader reader = new BufferedReader(ler);
 			String linha;
 			while ((linha = reader.readLine()) != null) {
